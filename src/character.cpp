@@ -172,7 +172,7 @@ static void playerClearHistory() {
 // Assumptions:
 //   - Each race has init history beginning at (race-1)*3+1
 //   - All history parts are in ascending order
-static void characterGetHistory() {
+void characterGetHistory() {
     auto history_id = py.misc.race_id * 3 + 1;
     auto social_class = randomNumber(4);
 

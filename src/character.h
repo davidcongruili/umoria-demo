@@ -69,3 +69,4 @@ typedef struct {
 } Background_t;
 
 void characterCreate();
+void characterGetHistory();

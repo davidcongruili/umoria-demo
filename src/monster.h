@@ -6,7 +6,7 @@
 #pragma once
 
 // Monster_t is created for any living monster found on the current dungeon level
-typedef struct {
+struct Monster_t {
     int16_t hp;           // Hit points
     int16_t sleep_count;  // Inactive counter
     int16_t speed;        // Movement speed
@@ -19,7 +19,7 @@ typedef struct {
     bool lit;
     uint8_t stunned_amount;
     uint8_t confused_amount;
-} Monster_t;
+};
 
 // Creature_t is a base data object.
 // Holds the base game data for any given creature in the game such

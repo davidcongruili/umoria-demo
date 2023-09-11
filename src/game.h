@@ -117,3 +117,4 @@ void setFileptr(FILE *file);
 // game_run.cpp
 // (includes the playDungeon() main game loop)
 void startMoria(int seed, bool start_new_game);
+

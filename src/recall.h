@@ -6,16 +6,23 @@
 #pragma once
 
 // Recall_t holds the player's known knowledge for any given monster, aka memories
-typedef struct {
+struct Recall_t{
     uint32_t movement;
     uint32_t spells;
-    uint16_t kills;
     uint16_t deaths;
     uint16_t defenses;
     uint8_t wake;
     uint8_t ignore;
     uint8_t attacks[MON_MAX_ATTACKS];
-} Recall_t;
+    uint16_t kills;
+
+    uint16_t *get_kills() {
+        if (kills == SHRT_MAX) {
+            return nullptr;
+        }
+        return &kills;
+    }
+};
 
 extern Recall_t creature_recall[MON_MAX_CREATURES]; // Monster memories. -CJS-
 extern const char *recall_description_attack_type[25];

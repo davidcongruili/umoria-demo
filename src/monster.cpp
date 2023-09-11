@@ -1348,6 +1348,11 @@ void updateMonsters(bool attack) {
     }
 }
 
+uint16_t* getMemoryKills(uint16_t creature_id) {
+    auto memory = creature_recall[creature_id];
+    return memory.get_kills();
+}
+
 // Decreases monsters hit points and deletes monster if needed.
 // (Picking on my babies.) -RAK-
 int monsterTakeHit(int monster_id, int damage) {
@@ -1362,10 +1367,10 @@ int monsterTakeHit(int monster_id, int damage) {
     }
 
     uint32_t treasure_flags = monsterDeath(Coord_t{monster.pos.y, monster.pos.x}, creature.movement);
-
+    
     Recall_t &memory = creature_recall[monster.creature_id];
-
     if ((py.flags.blind < 1 && monster.lit) || ((creature.movement & config::monsters::move::CM_WIN) != 0u)) {
+        
         auto tmp = (uint32_t)((memory.movement & config::monsters::move::CM_TREASURE) >> config::monsters::move::CM_TR_SHIFT);
 
         if (tmp > ((treasure_flags & config::monsters::move::CM_TREASURE) >> config::monsters::move::CM_TR_SHIFT)) {
@@ -1374,9 +1379,7 @@ int monsterTakeHit(int monster_id, int damage) {
 
         memory.movement = (uint32_t)((memory.movement & ~config::monsters::move::CM_TREASURE) | treasure_flags);
 
-        if (memory.kills < SHRT_MAX) {
-            memory.kills++;
-        }
+        ++(*getMemoryKills(monster.creature_id));
     }
 
     playerGainKillExperience(creature);

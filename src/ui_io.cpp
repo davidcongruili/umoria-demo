@@ -9,6 +9,7 @@
 #include "headers.h"
 #include "curses.h"
 
+#define getscryx(y, x) getyx(stdscr, (y), (x))
 static bool curses_on = false;
 
 // Spare window for saving the screen. -CJS-
@@ -69,7 +70,7 @@ void terminalRestore() {
     // this moves curses to bottom right corner
     int y = 0;
     int x = 0;
-    getyx(stdscr, y, x);
+    getscryx(y, x);
     mvcur(y, x, LINES - 1, 0);
 
     // exit curses
@@ -203,7 +204,7 @@ void panelPutTile(char ch, Coord_t coord) {
 
 static Coord_t currentCursorPosition() {
     int y, x;
-    getyx(stdscr, y, x);
+    getscryx(y, x);
     return Coord_t{y, x};
 }
 
@@ -474,7 +475,7 @@ int getInputConfirmationWithAbort(int column, const std::string &prompt) {
     putStringClearToEOL(prompt, Coord_t{0, column});
 
     int y, x;
-    getyx(stdscr, y, x);
+    getscryx(y, x);
 
     if (x > 73) {
         (void) move(0, 73);
