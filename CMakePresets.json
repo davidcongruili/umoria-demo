@@ -9,7 +9,7 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" },
-            "toolchainFile": "/home/sybrand/vcpkg/scripts/buildsystems/vcpkg.cmake",
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -42,7 +42,10 @@
             "toolchainFile": "C:/Program Files/Microsoft Visual Studio/2022/IntPreview/VC/vcpkg/scripts/buildsystems/vcpkg.cmake",
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe"
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_TOOLCHAIN_FILE": {
+                      "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                      "type": "FILEPATH"
             },
             "condition": {
                 "type": "equals",
@@ -50,7 +53,7 @@
                 "rhs": "Windows"
             },
             "environment": {
-                "CXXFLAGS": "/fsanitize=address /external:W0 /external:anglebrackets /analyze /analyze:external- /analyze:plugin EspXEngine.dll /analyze:ruleset \"C:\\Program Files\\Microsoft Visual Studio\\2022\\IntPreview\\Team Tools\\Static Analysis Tools\\Rule Sets\\CppCoreCheckLifetimeRules.ruleset\"",
+                "CXXFLAGS": "/fsanitize=address /external:W0 /external:anglebrackets /analyze /analyze:external- /analyze:plugin EspXEngine.dll /analyze:ruleset \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Team Tools\\Static Analysis Tools\\Rule Sets\\CppCoreCheckLifetimeRules.ruleset\"",
                 "ASAN_OPTIONS": "continue_on_error=1",
                 "esp.extensions": "cppcorecheck.dll"
 
